@@ -1,8 +1,8 @@
 
-const Button = ()=>{
+const Button = (props)=>{
     return(
         <div>
-            <button className="btn">Add</button>
+            <button className="btn">{props.title}</button>
         </div>
     )
 }
