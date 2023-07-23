@@ -11,14 +11,18 @@ export default function App() {
     
   ])
   useEffect(() => {
-    const fetchTask = async () => {
-      const res = await fetch('http://localhost:5000/tasks')
-      const data = await res.json()
-      return data
+    const getTasks = async () => {
+      const tasksFromServer = await fetchTask()
+      setTasks(tasksFromServer)
     }
-    fetchTask()
+    getTasks()
   }, [])
-
+  
+  const fetchTask = async () => {
+    const res = await fetch('http://localhost:5000/tasks')
+    const data = await res.json()
+    return data
+  }
   const deleteTask = (id) => {
     setTasks(tasks.filter((task)=>task.id!==id))
   }
