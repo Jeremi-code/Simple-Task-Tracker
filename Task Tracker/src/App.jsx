@@ -23,8 +23,11 @@ export default function App() {
     const data = await res.json()
     return data
   }
-  const deleteTask = (id) => {
-    setTasks(tasks.filter((task)=>task.id!==id))
+  const deleteTask = async (id) => {
+    await fetch(`http://localhost:5000/tasks/${id}`,{
+      method:'DELETE',
+      })
+      setTasks(tasks.filter((task)=>task.id!==id))     
   }
 
   const toggleReminder = (id) => {
