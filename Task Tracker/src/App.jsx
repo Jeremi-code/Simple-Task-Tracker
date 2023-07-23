@@ -1,7 +1,7 @@
 
 import Header from './component/Header'
 import './index.css'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import Tasks from './component/Tasks'
 import AddTask from './component/AddTask'
 
@@ -10,6 +10,14 @@ export default function App() {
   const [tasks, setTasks] = useState([
     
   ])
+  useEffect(() => {
+    const fetchTask = async () => {
+      const res = await fetch('http://localhost:5000/tasks')
+      const data = await res.json()
+      return data
+    }
+    fetchTask()
+  }, [])
 
   const deleteTask = (id) => {
     setTasks(tasks.filter((task)=>task.id!==id))
